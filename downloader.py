@@ -123,7 +123,6 @@ class BinanceDownloader:
         self.driver.get(url)
         WebDriverWait(self.driver, timeout=10).until(
                 lambda d: d.find_element(By.CSS_SELECTOR, "#listing tr td"))
-        self.driver.implicitly_wait(0.5)
         tds = self.driver.find_elements(By.CSS_SELECTOR, '#listing tr td')
         assert len(tds) % 3 == 0
         items = []
