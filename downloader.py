@@ -149,10 +149,10 @@ class BinanceDownloader:
         if not self.need_checksum and item.name.endswith('.CHECKSUM'):
             return
         dir_path = os.path.join(self.output_dir, *components)
-        pathlib.Path(dir_path).mkdir(parents=True, exist_ok=True)
         file_path = os.path.join(dir_path, item.name)
         if self.overwrite == OverwriteOption.OVERWRITE_NEVER and os.path.exists(file_path):
             return
+        pathlib.Path(dir_path).mkdir(parents=True, exist_ok=True)
         self.taskno = self.taskno + 1
         if not self.executor:
             self._download_file(item, file_path, self.taskno)
